@@ -1,0 +1,13 @@
+*{
+    border: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+div{
+    border: 2px solid gray;
+}
+
+.header > ul{
+    list-style: none;
+}
