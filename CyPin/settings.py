@@ -122,6 +122,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+APPEND_SLASH = False
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
