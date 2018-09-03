@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
 
@@ -19,6 +19,7 @@ def login_view(request):
         # username = username + ":" + user_type
         user = authenticate(username=username, password=password)
         if user is not None:
+            login(request, user)
             if(user_type == "head"):
                 return HttpResponse("Home Head")
                 # return redirect("home_head")
@@ -47,5 +48,6 @@ def home_head(request):
 
 def home_user(request):
     return HttpResponse("Hello User")
+
 
 
