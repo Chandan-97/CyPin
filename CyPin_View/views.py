@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
+from django.core.cache import cache
+from .models import *
 
 # Create your views here.
 def index_view(request):
@@ -48,6 +50,33 @@ def home_head(request):
 
 def home_user(request):
     return HttpResponse("Hello User")
+
+def add_item(request):
+    if request.POST:
+        form_data = request.POST.dict()
+        item_name = form_data.get("item_name")
+        item_model = form_data.get("item_model")
+        item_quantity = form_data.get("item_quantity")
+        # writing hash function to get the item id
+        item_id = -1
+        item_cost = form_data.get("item_cost")
+
+    else:
+        return HttpResponse("Add Items Here")
+
+def Logout(request):
+    try:
+        del request.session['session_id']
+    except Exception as e:
+        print("Error Deleting Session")
+
+    try:
+        logout(request)
+        cache.clear()
+        print("Logout Successfully")
+    except Exception as e:
+        print("Error Logging out user")
+    return HttpResponseRedirect("/")
 
 
 

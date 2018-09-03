@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^home_admin$', home_admin),
     url(r'^home_head$', home_head),
     url(r'^home_user$', home_user),
+    url(r'^add_items', add_item),
+    url(r'^logout', Logout),
 ]
