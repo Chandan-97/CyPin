@@ -7,7 +7,7 @@ class Items(models.Model):
     item_id = models.IntegerField(default=-1)
     item_name = models.CharField(max_length=30, default="N/A")
     item_model = models.CharField(max_length=30, default="N/A")
-    item_cost = models.IntegerField(default=0)
+    item_cost = models.IntegerField(default=-1)
     item_count = models.IntegerField(default=-1)
     item_added = models.DateTimeField(auto_now_add=True)
 

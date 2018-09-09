@@ -37,7 +37,7 @@ def login_view(request):
                 # return redirect("home")
         else:
             print("Not Authenticated")
-        return HttpResponse("Hello There")
+        return HttpResponse("Error Login")
     else:
         return render(request, "base.html")
 
@@ -61,8 +61,16 @@ def add_item(request):
         item_id = -1
         item_cost = form_data.get("item_cost")
 
+        print(item_id, item_name, item_model, item_quantity, item_cost)
+        try:
+            Items(item_id=item_id, item_name=item_name, item_model=item_model, item_cost=item_cost, item_count=item_quantity).save()
+            print("Item Saved")
+        except Exception as e:
+            print("Item Saving Error")
+        return HttpResponse("Item Added")
+
     else:
-        return HttpResponse("Add Items Here")
+        return render(request, "add_items.html")
 
 def Logout(request):
     try:
